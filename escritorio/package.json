@@ -1,0 +1,79 @@
+{
+  "name": "farmacia-cdi-escritorio",
+  "version": "1.0.9",
+  "description": "Farmacia CDI - programa de escritorio para Windows (instalable con un .exe)",
+  "author": "Colaboradores del proyecto Farmacia CDI",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "preparar": "node scripts/preparar.js",
+    "pg": "node scripts/descargar-pg.js",
+    "dev": "npm run preparar && electron .",
+    "dist": "npm run preparar && electron-builder --win --x64 --publish never",
+    "empaquetar": "npm run preparar && electron-builder --win --x64 --dir --publish never"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "org.farmaciacdi.escritorio",
+    "productName": "Farmacia CDI",
+    "asar": false,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "preload-activar.js",
+      "activar.js",
+      "activar.html",
+      "cripto.js",
+      "preload-app.js",
+      "setup.html",
+      "actualizaciones.json",
+      "app-src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "recursos/pgsql",
+        "to": "pgsql"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Farmacia CDI",
+      "uninstallDisplayName": "Farmacia CDI",
+      "runAfterFinish": false,
+      "deleteAppDataOnUninstall": false,
+      "language": "3082",
+      "artifactName": "Farmacia-CDI-Instalador-${version}.exe"
+    }
+  },
+  "productName": "Farmacia CDI"
+}

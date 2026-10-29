@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+<title>Configuración inicial</title>
+<style>
+:root{--bg:#f3f6f8;--fg:#17202a;--card:#fff;--ac:#0f766e;--acf:#fff;--bad:#b91c1c;--bd:#d3dae1;--mut:#566370;--ring:rgba(15,118,110,.28);color-scheme:light}
+:root[data-t=dark]{--bg:#0f1417;--fg:#e8eaed;--card:#181e22;--ac:#2dd4bf;--acf:#06201d;--bad:#f87171;--bd:#323b42;--mut:#9aa5b1;--ring:rgba(45,212,191,.3);color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-t=light]){--bg:#0f1417;--fg:#e8eaed;--card:#181e22;--ac:#2dd4bf;--acf:#06201d;--bad:#f87171;--bd:#323b42;--mut:#9aa5b1;--ring:rgba(45,212,191,.3);color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;font:14px/1.4 "Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--fg);padding:18px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+h2{margin:0;color:var(--ac);font-size:21px}p.s{margin:2px 0 6px;color:var(--mut)}
+.sec{margin:14px 0 2px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--bd);padding-bottom:3px}
+.f{margin:9px 0}label{display:block;font-weight:600;font-size:13px;margin-bottom:3px}label small{font-weight:400;color:var(--mut)}
+input{width:100%;padding:9px 11px;border:1px solid var(--bd);border-radius:7px;font:inherit;background:var(--card);color:var(--fg)}
+input:focus,button:focus-visible{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px var(--ring)}
+input[aria-invalid=true]{border-color:var(--bad)}input.v{border-color:var(--ac)}
+.e{display:block;min-height:15px;margin-top:2px;font-size:12px;color:var(--bad)}.h{font-size:11px;color:var(--mut)}
+.bar{height:5px;border-radius:3px;background:var(--bd);margin-top:5px;overflow:hidden}.bar i{display:block;height:100%;width:0;transition:.2s;background:var(--bad)}
+button{font:inherit;cursor:pointer}#go{width:100%;margin-top:14px;padding:11px;border:0;border-radius:8px;background:var(--ac);color:var(--acf);font-weight:600}#go:disabled{opacity:.55;cursor:not-allowed}
+#t{padding:4px 9px;font-size:12px;border:1px solid var(--bd);border-radius:6px;background:transparent;color:var(--mut)}
+#e{margin-top:8px;color:var(--bad);font-weight:600;min-height:18px}
+</style></head><body>
+<div class="top"><div><h2>Bienvenido a Farmacia CDI</h2><p class="s">Cree el usuario principal (Farmacéutico Regente). Anote la clave en un lugar seguro.</p></div><button id="t" type="button"></button></div>
+<form id="fm" novalidate autocomplete="off">
+<div class="sec">Institución</div>
+<div class="f"><label for="inst">Nombre de la institución</label><input id="inst" value="CDI Santa Ana" placeholder="Ej. CDI Santa Ana" maxlength="100"><span class="e"></span></div>
+<div class="sec">Datos del Regente</div>
+<div class="f"><label for="nom">Nombre completo</label><input id="nom" maxlength="150" placeholder="Ej. María Pérez" autocomplete="off"><span class="e"></span></div>
+<div class="f"><label for="ced">Cédula <small>(ej. V-12345678)</small></label><input id="ced" maxlength="13" placeholder="Ej. V-12345678"><span class="e"></span></div>
+<div class="f"><label for="mat">Matrícula MPPS <small>(opcional)</small></label><input id="mat" maxlength="30" placeholder="Ej. MPPS-12345"><span class="e"></span></div>
+<div class="sec">Acceso al sistema</div>
+<div class="f"><label for="usr">Usuario <small>(letras y números, sin espacios)</small></label><input id="usr" maxlength="30" placeholder="Ej. regente" autocomplete="off" autocapitalize="off"><span class="e"></span></div>
+<div class="f"><label for="p1">Clave <small>(mínimo 10, con mayúscula, minúscula y número)</small></label><input id="p1" type="password" maxlength="128" autocomplete="new-password"><div class="bar"><i id="fz"></i></div><span class="e"></span></div>
+<div class="f"><label for="p2">Repita la clave</label><input id="p2" type="password" maxlength="128" autocomplete="new-password"><span class="e"></span></div>
+<button id="go" type="submit">Crear usuario y comenzar</button><div id="e" role="alert"></div>
+</form>
+<script>
+const $=s=>document.getElementById(s);
+// ---- tema ----
+const TT=[['auto','Tema: automático'],['light','Tema: claro'],['dark','Tema: oscuro']];
+const gt=()=>{try{return localStorage.t||'auto'}catch{return'auto'}};
+const at=t=>{t==='auto'?document.documentElement.removeAttribute('data-t'):document.documentElement.dataset.t=t;$('t').textContent=TT.find(x=>x[0]===t)[1]};
+$('t').onclick=()=>{const n=TT[(TT.findIndex(x=>x[0]===gt())+1)%3][0];try{localStorage.t=n}catch{}at(n)};at(gt());
+// ---- validaciones (las mismas reglas se repiten en el programa principal) ----
+const normCed=v=>v.toUpperCase().replace(/[\s.\-]/g,'');
+const R={
+  inst:v=>v.trim().length<3?'Escriba el nombre de la institución (mínimo 3 letras)':'',
+  nom:v=>{v=v.trim();return v.length<3?'Escriba el nombre completo':!/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ][A-Za-zÁÉÍÓÚÜÑáéíóúüñ .'\-]+$/.test(v)?'Solo letras y espacios':!/\s/.test(v)?'Escriba nombre y apellido':''},
+  ced:v=>!v.trim()?'La cédula es obligatoria':!/^[VE]\d{6,9}$/.test(normCed(v))?'Formato: V o E seguida de 6 a 9 números (ej. V12345678)':'',
+  mat:v=>v.trim()&&!/^[A-Za-z0-9.\-\/ ]{3,30}$/.test(v.trim())?'3 a 30 caracteres: letras, números, punto, guion o barra':'',
+  usr:v=>!v.trim()?'Escriba un usuario':!/^[A-Za-z0-9_.-]{3,30}$/.test(v.trim())?'3 a 30 caracteres: letras, números, punto, guion o guion bajo':'',
+  p1:v=>v.length<10?'Mínimo 10 caracteres':!/[a-z]/.test(v)?'Agregue una minúscula':!/[A-Z]/.test(v)?'Agregue una mayúscula':!/\d/.test(v)?'Agregue un número':v.toLowerCase().includes($('usr').value.trim().toLowerCase()||'\u0000')?'La clave no puede contener el usuario':'',
+  p2:v=>v!==$('p1').value?'Las claves no coinciden':!v?'Repita la clave':''
+};
+const ids=Object.keys(R);
+function check(k){const i=$(k),m=R[k](i.value),e=i.parentElement.querySelector('.e');e.textContent=m;i.setAttribute('aria-invalid',m?'true':'false');i.classList.toggle('v',!m&&!!i.value.trim());return !m}
+function fuerza(v){let n=0;[v.length>=10,v.length>=14,/[a-z]/.test(v)&&/[A-Z]/.test(v),/\d/.test(v),/[^A-Za-z0-9]/.test(v)].forEach(x=>n+=x);
+  const f=$('fz');f.style.width=(v?n*20:0)+'%';f.style.background=n<3?'var(--bad)':n<5?'#d97706':'var(--ac)'}
+ids.forEach(k=>{const i=$(k);i.addEventListener('blur',()=>check(k));i.addEventListener('input',()=>{
+  if(k==='ced'){const p=i.selectionStart;i.value=i.value.toUpperCase()}
+  if(i.getAttribute('aria-invalid')==='true')check(k);if(k==='p1'){fuerza(i.value);if($('p2').value)check('p2')}if(k==='usr'&&$('p1').value)check('p1');$('e').textContent=''})});
+$('fm').onsubmit=async ev=>{ev.preventDefault();$('e').textContent='';
+  const r=ids.map(check),p=r.indexOf(false);if(p>=0){$(ids[p]).focus();$('e').textContent='Corrija los campos marcados en rojo';return}
+  $('go').disabled=true;$('go').textContent='Creando…';
+  const x=await window.setup.crearAdmin({institucion:$('inst').value.trim(),nombre:$('nom').value.trim().replace(/\s+/g,' '),cedula:normCed($('ced').value),
+    matricula:$('mat').value.trim(),usuario:$('usr').value.trim(),clave:$('p1').value});
+  if(!x.ok){$('e').textContent=x.error;$('go').disabled=false;$('go').textContent='Crear usuario y comenzar'}};
+</script></body></html>

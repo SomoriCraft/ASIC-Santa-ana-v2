@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Farmacia CDI Santa Ana</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#0f766e">
+<script src="tema-pre.js"></script>
+<style>
+:root{--bg:#f3f6f8;--fg:#17202a;--card:#fff;--ac:#0f766e;--acf:#fff;--bad:#b91c1c;--warn:#b45309;--bd:#d3dae1;--mut:#566370;--ring:rgba(15,118,110,.28);--sh:0 1px 3px rgba(16,24,40,.08),0 8px 24px rgba(16,24,40,.06)}
+:root[data-theme=dark]{--bg:#0f1417;--fg:#e8eaed;--card:#181e22;--bd:#323b42;--ac:#2dd4bf;--acf:#06201d;--bad:#f87171;--warn:#fbbf24;--mut:#9aa5b1;--ring:rgba(45,212,191,.3);--sh:0 8px 24px rgba(0,0,0,.35)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1417;--fg:#e8eaed;--card:#181e22;--bd:#323b42;--ac:#2dd4bf;--acf:#06201d;--bad:#f87171;--warn:#fbbf24;--mut:#9aa5b1;--ring:rgba(45,212,191,.3);--sh:0 8px 24px rgba(0,0,0,.35)}}
+html{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}@media(prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--fg)}
+header{background:var(--ac);color:#fff;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+header h1{font-size:17px;margin:0}.brand{display:flex;align-items:center;gap:10px}.lg{width:44px;height:44px;border-radius:50%;background:#fff}
+.lgl{display:block;width:150px;height:150px;margin:6px auto 10px;border-radius:50%;background:#fff}.cen{text-align:center}#net{font-size:12px}
+nav{display:flex;gap:6px;padding:8px 14px;overflow-x:auto;background:var(--card);border-bottom:1px solid var(--bd)}
+nav button{white-space:nowrap}main{padding:14px;max-width:1100px;margin:auto}
+button,input,select,textarea{font:inherit;padding:8px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--card);color:var(--fg);width:100%}
+button{width:auto;cursor:pointer}button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+nav button.on{background:var(--ac);color:#fff}label{display:block;margin:8px 0;color:var(--mut);font-size:13px}
+label input,label select,label textarea{margin-top:3px;color:var(--fg)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}@media(max-width:560px){.g2{grid-template-columns:1fr}}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:12px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:10px;font-size:12px;color:var(--mut)}
+.c b{display:block;font-size:24px;color:var(--fg)}.c.bad b{color:var(--bad)}.c.warn b{color:var(--warn)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;background:var(--card)}
+th,td{padding:6px 8px;border-bottom:1px solid var(--bd);text-align:left;font-size:13px}
+.res button.row{display:block;width:100%;text-align:left;border-radius:0;border-top:0}
+.ok{color:var(--ac)}.bad{color:var(--bad)}#msg{margin:8px 0;min-height:20px;font-weight:600}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:10px;margin:8px 0}
+header{color:var(--acf)}button.pri{color:var(--acf)}nav button.on{color:var(--acf)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:0;box-shadow:0 0 0 3px var(--ring);border-color:var(--ac)}
+button.ghost{background:transparent;color:inherit;border-color:currentColor;padding:5px 10px;font-size:13px}
+.hr{display:flex;align-items:center;gap:10px}
+.auth{min-height:calc(100vh - 160px);display:grid;place-items:center}
+.card{width:100%;max-width:400px;background:var(--card);border:1px solid var(--bd);border-radius:14px;box-shadow:var(--sh);padding:26px 24px}
+.card .lgl{width:96px;height:96px;margin:0 auto 12px;border:1px solid var(--bd)}
+.card h2{margin:0;text-align:center;font-size:20px}.card .sub{margin:2px 0 18px;text-align:center;color:var(--mut);font-size:13px}
+.fld{margin:12px 0}.fld>label{margin:0 0 4px;font-weight:600;color:var(--fg)}.fld .in{position:relative}
+.fld input{padding:10px 12px}.fld .in button{position:absolute;right:4px;top:4px;padding:5px 9px;border:0;background:transparent;color:var(--mut);font-size:12px}
+.fld input[aria-invalid=true]{border-color:var(--bad)}.fld input.v{border-color:var(--ac)}
+.err{display:block;min-height:16px;margin-top:3px;font-size:12px;color:var(--bad)}.hint{font-size:12px;color:var(--warn);min-height:16px}
+.alert{display:none;margin:10px 0 0;padding:9px 11px;border-radius:8px;border:1px solid var(--bad);color:var(--bad);font-size:13px;font-weight:600}.alert.on{display:block}
+.card .pri{width:100%;padding:11px;font-weight:600;margin-top:6px}.card .pri:disabled{opacity:.55;cursor:not-allowed}
+.bar2{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}.bar2 h3{margin:0}
+dialog.md{max-width:520px;max-height:92vh;overflow:auto;color:var(--fg)}dialog.md::backdrop{background:rgba(0,0,0,.5)}dialog.md h3{margin:0 0 10px}
+.bt{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.bt .pri{width:auto;margin:0;padding:9px 16px}
+.chk{display:flex!important;align-items:center;gap:8px;font-weight:600}.chk input{width:auto}
+.alerts{display:grid;gap:6px;margin-bottom:12px}.al{padding:9px 12px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--warn);color:var(--warn)}.al.bad{border-color:var(--bad);color:var(--bad)}
+.ac{white-space:nowrap}.ac button{padding:4px 9px;font-size:12px}td small{color:var(--mut)}.card.imp{max-width:none;margin:12px 0}.card.imp h4{margin:0 0 4px}td.ok,td.bad{font-weight:600}
+.lnks{text-align:center;margin:14px 0 0;font-size:12px;display:flex;flex-direction:column;gap:2px}.lk{background:none;border:0;color:var(--ac);text-decoration:underline;padding:3px;cursor:pointer;width:auto;font-size:12px}
+.al.ok{border-color:var(--ac);color:var(--ac)}tr.dif td{background:rgba(180,83,9,.14)}.cuenta input{width:100px;padding:6px 8px}.cuenta input.mo{width:220px}.ex{margin-right:auto}.bt{flex-wrap:wrap}
+.sem{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:middle}.sem.rojo{background:#dc2626}.sem.ambar{background:#f59e0b}.sem.verde{background:#16a34a}
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:0 0 12px}
+.tarj{text-align:left;background:var(--card);color:var(--fg);border:1px solid var(--bd);border-left:6px solid var(--bd);border-radius:10px;padding:10px 12px;line-height:1.35}
+.tarj.rojo{border-left-color:#dc2626}.tarj.ambar{border-left-color:#f59e0b}.tarj.verde{border-left-color:#16a34a}.tarj.on{outline:2px solid var(--ac)}.tarj b{font-size:20px}
+.chip{display:inline-flex;gap:6px;align-items:center}.fmt{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.fmt select{width:auto}
+.recuperar{position:fixed;right:16px;bottom:16px;z-index:9999;max-width:360px;background:var(--card);color:var(--fg);border:2px solid var(--warn);border-radius:12px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.recuperar p{margin:6px 0;font-size:13px}
+details.man{border:1px solid var(--bd);border-radius:10px;margin:8px 0;background:var(--card)}details.man summary{cursor:pointer;padding:10px 14px;font-weight:600}.mc{padding:0 16px 12px;line-height:1.55}.mc .aviso{border-left:4px solid var(--warn);background:rgba(180,83,9,.12);padding:6px 10px;margin:8px 0}
+</style>
+</head>
+<body>
+<header><div class="brand"><img class="lg" id="lg" src="logo.png" alt=""><h1 id="tt">Farmacia</h1></div><div class="hr"><span id="net">…</span><button class="ghost" id="tema" type="button"></button></div></header>
+<nav id="nav"></nav>
+<main><div id="msg"></div><div id="v"></div></main>
+<script src="app.js"></script>
+<script src="modulos.js"></script>
+<script src="modulos2.js"></script>
+<script src="borradores.js"></script>
+<script src="manual.js"></script>
+<script src="modulos3.js"></script>
+</body>
+</html>

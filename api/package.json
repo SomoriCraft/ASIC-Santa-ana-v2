@@ -1,0 +1,17 @@
+{
+  "name": "cdi-santa-ana-farmacia",
+  "version": "1.0.9",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.5"
+  },
+  "license": "MIT",
+  "description": "Control de inventario y farmacia hospitalaria (FEFO, controlados, Kardex) para centros de salud comunitarios"
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; script-src 'self'">
+<title>Autorizar este equipo</title>
+<style>
+:root{--bg:#f3f6f8;--fg:#17202a;--card:#fff;--ac:#0f766e;--acf:#fff;--bad:#b91c1c;--bd:#d3dae1;--mut:#566370;--ring:rgba(15,118,110,.28);color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1417;--fg:#e8eaed;--card:#181e22;--ac:#2dd4bf;--acf:#06201d;--bad:#f87171;--bd:#323b42;--mut:#9aa5b1;--ring:rgba(45,212,191,.3);color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;font:14px/1.45 "Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--fg);padding:20px}
+h2{margin:0 0 6px;color:var(--ac);font-size:20px}p{margin:6px 0}.m{color:var(--mut);font-size:13px}.cod{font:600 15px Consolas,monospace;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:6px 10px;display:inline-block;margin:4px 0}
+.av{border:1px solid var(--bad);color:var(--bad);border-radius:8px;padding:8px 10px;margin:10px 0;font-size:13px;font-weight:600;display:none}.av.on{display:block}
+label{display:block;font-weight:600;margin:12px 0 4px}input{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:7px;font:inherit;background:var(--card);color:var(--fg)}
+input:focus,button:focus-visible{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px var(--ring)}
+.bt{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}button{font:inherit;cursor:pointer;padding:9px 16px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--fg)}
+button.pri{background:var(--ac);color:var(--acf);border-color:var(--ac);font-weight:600}button:disabled{opacity:.5;cursor:not-allowed}#e{color:var(--bad);font-weight:600;min-height:18px;margin-top:8px}
+</style></head><body>
+<h2 id="t">Autorizar este equipo</h2><p id="x"></p>
+<p class="m">Código de este equipo: <span class="cod" id="c"></span></p>
+<div class="av" id="av">Atención: esta copia de los datos no pertenece a este equipo. Si no se autoriza con la clave maestra del usuario principal, la información copiada se ELIMINARÁ de este equipo.</div>
+<form id="f" autocomplete="off"><label for="m">Clave maestra del usuario principal</label><input id="m" type="password" maxlength="128" autocomplete="off" autofocus>
+<div id="e" role="alert"></div><p class="m" id="i"></p>
+<div class="bt"><button type="button" id="s">Salir</button><button class="pri" type="submit" id="o">Autorizar</button></div></form>
+<script src="activar.js"></script>
+</body></html>
