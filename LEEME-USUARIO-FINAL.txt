@@ -1,0 +1,30 @@
+FARMACIA CDI - INSTALACIÓN (Windows)
+====================================
+
+1) Haga doble clic en  Farmacia-CDI-Instalador.exe
+   - Si Windows muestra "Windows protegió su PC": pulse "Más información" y luego "Ejecutar de todas formas".
+   - Cuando Windows pregunte si permite hacer cambios, pulse "Sí" (se instala en C:\Program Files\Farmacia CDI).
+   - Siga el asistente: Siguiente, Siguiente, Instalar, Finalizar.
+   - Se crea un icono en el escritorio y en el menú Inicio.
+
+2) Abra "Farmacia CDI" con el icono del escritorio.
+   - La primera vez tarda un par de minutos preparando todo.
+   - Aparece una pantalla de bienvenida: escriba el nombre de su institución, su nombre, su cédula,
+     un usuario y una clave (mínimo 10 caracteres). ANOTE LA CLAVE en un lugar seguro.
+
+3) Listo. Entre con su usuario y clave.
+
+RESPALDOS
+- El programa guarda una copia automática cada día al cerrarlo, en  Documentos\Farmacia CDI\Respaldos
+- También puede hacerla cuando quiera: menú Archivo > Respaldo ahora.
+- Copie esa carpeta a una memoria USB o disco externo con frecuencia.
+  Si la PC se daña y no hay copia fuera de ella, los datos se pierden.
+
+SI ALGO FALLA
+- Tome una foto o copie el mensaje de error y envíelo a quien le ayuda con el sistema.
+
+DESINSTALAR
+- Configuración de Windows > Aplicaciones > Aplicaciones instaladas > Farmacia CDI > Desinstalar.
+- Al final el desinstalador pregunta si desea borrar también los datos. Elija "No" para conservarlos (recomendado).
+- Los respaldos de la carpeta Documentos nunca se borran.
+- Si instala una versión nueva encima, se actualiza y los datos se conservan.

@@ -1,0 +1,13 @@
+.env
+node_modules/
+*.dump
+*.sql.gz
+respaldo/
+backups/
+.DS_Store
+escritorio/node_modules/
+escritorio/app-src/
+escritorio/recursos/
+escritorio/dist/
+escritorio/build/icon.png
+escritorio/instalador/salida/
